@@ -9,7 +9,7 @@ interface IProps {
   }[];
 }
 
-const List = ({ people }: IProps) => {
+const List: React.FC<IProps> = ({ people }) => {
   const renderList = () => {
     return people.map((person) => {
       return (
@@ -24,13 +24,7 @@ const List = ({ people }: IProps) => {
       );
     });
   };
-  return (
-    <ul>
-      {people.map((person) => {
-        return <div>{person.name}</div>;
-      })}
-    </ul>
-  );
+  return <ul>{renderList()}</ul>;
 };
 
 export default List;
