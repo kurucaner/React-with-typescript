@@ -13,12 +13,14 @@ const List = ({ people }: IProps) => {
   const renderList = () => {
     return people.map((person) => {
       return (
-        <div key={person.name}>
-          <h1>{person.name}</h1>
-          <h2>{person.age}</h2>
-          <img src={person.url} alt={person.name} />
-          <p>{person.notes}</p>
-        </div>
+        <li className="List">
+          <div key={person.name} className="List-header">
+            <img className="List-img" src={person.url} alt={person.name} />
+            <h2>{person.name}</h2>
+          </div>
+          <p>{person.age}</p>
+          <p className="List-note">{person.notes}</p>
+        </li>
       );
     });
   };
