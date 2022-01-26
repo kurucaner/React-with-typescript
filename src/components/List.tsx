@@ -13,8 +13,8 @@ const List: React.FC<IProps> = ({ people }) => {
   const renderList = () => {
     return people.map((person) => {
       return (
-        <li className="List">
-          <div key={person.name} className="List-header">
+        <li className="List" key={person.name}>
+          <div className="List-header">
             <img className="List-img" src={person.url} alt={person.name} />
             <h2>{person.name}</h2>
           </div>

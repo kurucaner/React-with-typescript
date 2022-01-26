@@ -41,7 +41,7 @@ function App() {
     <div className="App">
       <h1>People Invited to my Party</h1>
       <List people={people} />
-      <AddToList />
+      <AddToList people={people} setPeople={setPeople} />
     </div>
   );
 }
