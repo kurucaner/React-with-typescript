@@ -13,6 +13,7 @@ const AddToList: React.FC<IProps> = ({ people, setPeople }) => {
     url: "",
     notes: "",
   });
+  const [error, setError] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -25,7 +26,10 @@ const AddToList: React.FC<IProps> = ({ people, setPeople }) => {
 
   const handleClick = (): void => {
     if (!input.name || !input.age || !input.url || !input.notes) {
-      alert("Please fill out all fields");
+      setError("Please fill out all fields");
+      return;
+    } else if (parseInt(input.age) < 0 || parseInt(input.age) > 120) {
+      setError("Age must be between 0 and 120");
       return;
     }
     setPeople([
@@ -78,6 +82,7 @@ const AddToList: React.FC<IProps> = ({ people, setPeople }) => {
       <button className="AddToList-btn" onClick={handleClick}>
         Add To List
       </button>
+      {error && <p className="AddToList-error">{error}</p>}
     </div>
   );
 };
