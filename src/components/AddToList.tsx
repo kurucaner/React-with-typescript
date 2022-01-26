@@ -5,7 +5,8 @@ interface IProps {
   people: Props["people"];
   setPeople: React.Dispatch<React.SetStateAction<Props["people"]>>;
 }
-const AddToList: React.FC<IProps> = ({ people }) => {
+
+const AddToList: React.FC<IProps> = ({ people, setPeople }) => {
   const [input, setInput] = useState({
     name: "",
     age: "",
@@ -23,7 +24,19 @@ const AddToList: React.FC<IProps> = ({ people }) => {
   };
 
   const handleClick = (): void => {
-    console.log(input);
+    if (!input.name || !input.age || !input.url || !input.notes) {
+      alert("Please fill out all fields");
+      return;
+    }
+    setPeople([
+      ...people,
+      {
+        name: input.name,
+        age: parseInt(input.age),
+        url: input.url,
+        notes: input.notes,
+      },
+    ]);
   };
 
   return (
@@ -38,7 +51,7 @@ const AddToList: React.FC<IProps> = ({ people }) => {
         required
       />
       <input
-        type="text"
+        type="number"
         placeholder="Age"
         className="AddToList-input"
         value={input.age}
